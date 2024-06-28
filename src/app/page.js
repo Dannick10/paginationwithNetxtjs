@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [typePagination, SetTypePagination] = useState(false);
+  const [typePagination, SetTypePagination] = useState(true);
 
   const [posts, Setposts] = useState("");
 

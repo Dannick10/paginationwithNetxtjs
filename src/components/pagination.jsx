@@ -55,8 +55,8 @@ const Pagination = ({ date, quantityforpage }) => {
       </label>
 
       {actualdate &&
-        actualdate.map((post) => (
-          <div className="border-[.1em] border-gray-300 bg-white p-10 rounded-md w-9/12 h-4/6 flex flex-col justify-around ">
+        actualdate.map((post,index) => (
+          <div  key={index} className="border-[.1em] border-gray-300 bg-white p-10 rounded-md w-9/12 h-4/6 flex flex-col justify-around ">
             <h1 className="text-xl text-gray-900">{post.title}</h1>
             <p className="text-sx text-gray-700">{post.body}</p>
           </div>
@@ -73,10 +73,9 @@ const Pagination = ({ date, quantityforpage }) => {
             &lt; Voltar
           </li>
 
-          {listButton.map((list) => (
+          {listButton.map((list,i) => (
             <>
-              <li
-               key={post.id}
+              <li key={i}
                 onClick={() => handleChangepage(list)}
                 className={`flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer ${
                   list == currentPage && ` text-gray-800 bg-slate-300`

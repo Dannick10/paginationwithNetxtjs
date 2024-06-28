@@ -32,7 +32,6 @@ const InfinityPagination = ({ date, quantityforsteps }) => {
 
   const pageTotal = Math.ceil(filterPage.length / quantityforsteps);
 
-  console.log(pageTotal);
   return (
     <section className="flex flex-col items-center justify-between gap-4 min-h-screen">
       <label className="flex gap-2">
