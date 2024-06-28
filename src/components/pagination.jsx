@@ -7,21 +7,30 @@ const Pagination = ({ date, quantityforpage }) => {
   const [actualdate, SetActualdata] = useState([]);
   const totalnumpage = 5;
   const [search, SetSearch] = useState("");
+  const [filterdDate, SetfilteredDate] = useState([]);
+
+  useEffect(() => {
+    const filtered =
+      search.length > 0
+        ? date.filter((post) => post.title.includes(search))
+        : date;
+    SetfilteredDate(filtered);
+    Setcurrentpage(1);
+  }, [search, date]);
 
   useEffect(() => {
     const firstItem = currentPage * quantityforpage;
     const lastitem = firstItem - quantityforpage;
-    SetActualdata(date.slice(lastitem, firstItem));
-  }, [date, quantityforpage, currentPage]);
+    SetActualdata(filterdDate.slice(lastitem, firstItem));
+  }, [filterdDate, quantityforpage, currentPage]);
 
   const handleChangepage = (num) => {
     Setcurrentpage(num);
     window.scroll(0, 0);
   };
 
-
   const listButton = [];
-  const pageTotal = Math.ceil(date.length / quantityforpage);
+  const pageTotal = Math.ceil(filterdDate.length / quantityforpage);
   let startPage = Math.max(currentPage - Math.floor(totalnumpage / 2), 1);
   let endPage = Math.min(startPage + totalnumpage - 1, pageTotal);
 
@@ -29,12 +38,9 @@ const Pagination = ({ date, quantityforpage }) => {
     startPage = Math.max(endPage - quantityforpage + 1, 1);
   }
 
-
-
   for (let i = startPage; i <= endPage; i++) {
     listButton.push(i);
   }
-
 
   return (
     <div className="flex flex-col items-center justify-between gap-4">
@@ -59,8 +65,7 @@ const Pagination = ({ date, quantityforpage }) => {
             currentPage <= 1 && `border-gray-300 text-gray-300`
           }`}
         >
-          &lt;
-          Voltar 
+          &lt; Voltar
         </button>
 
         {listButton.map((list) => (
@@ -77,7 +82,6 @@ const Pagination = ({ date, quantityforpage }) => {
           </>
         ))}
 
-      
         <button
           onClick={() =>
             currentPage < pageTotal && handleChangepage(currentPage + 1)
@@ -86,8 +90,7 @@ const Pagination = ({ date, quantityforpage }) => {
             currentPage >= pageTotal && `border-gray-300 text-gray-300`
           }`}
         >
-          Avançar
-          &gt;
+          Avançar &gt;
         </button>
       </div>
     </div>
