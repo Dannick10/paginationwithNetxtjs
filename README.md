@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Projeto de Paginação e Filtro em Nextjs
 
-## Getting Started
+Este projeto implementa um componente de paginação tradicional e infinita e filtro em Nextjs para exibir uma lista de posts filtráveis e pagináveis.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## /Exemplos paginação tradicional
+
+* props
+
+```javascript
+ date, quantityforpage, search 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Date** recebem todos os dados de um array
+2. **quantityforpage** configura a quantidade de váriveis
+3. **Search** filtra tudo o que for pesquisado
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+ * States
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```javascript
+  const [currentPage, Setcurrentpage] = useState(1);
+  const [actualdate, SetActualdata] = useState([]);
+  const totalnumpage = 5;
+  const [filterdDate, SetfilteredDate] = useState([]);
+```
 
-## Learn More
+1. **currentPage** Armazena o número da página atual.
+2. **actualDate** Armazena os dados da página atual exibidos.
+3. **totalNumPage** Define o número total de páginas exibidas.
+4. **filteredDate** Armazena os dados filtrados com base na busca.
 
-To learn more about Next.js, take a look at the following resources:
+* useEffect
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```javascript
+  useEffect(() => {
+    const firstItem = currentPage * quantityforpage;
+    const lastitem = firstItem - quantityforpage;
+    SetActualdata(filterdDate.slice(lastitem,      firstItem));
+  }, [filterdDate, quantityforpage, currentPage]);
+```
 
-## Deploy on Vercel
+1. **firstItem** Recebe o state currentPage  = 1 * **quantityforpage** = Número definido no prop (10)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* firstItem = 10
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. **lastItem** = **firstItem** = 10 - quantityforpage = 10
+
+* lastItem = 0
+
+3. **Setactualdata** recebe os dados filtrados, mas podendo receber sem o filtro. 
+
+  * O método **slice()** é utilizado para extrair uma parte de um array sem modificar o array original.
+  * **\exemplo**
+
+  ```javascript
+ const frutas = ["🍎", "🍌", "🍇", "🍉", "🍒"];
+const frutasSelecionadas = frutas.slice(1, 4); // Extrai do índice 1 ao 3 (4 não incluso)
+
+console.log(frutasSelecionadas); // Output: [ '🍌', '🍇', '🍉' ]
+```
+
+ * **ActualDate** recebe toda a data com o lastitem e o firstIte.
+
+ ```javascript
+     SetActualdata(filterdDate.slice(0,10));
+```
+assim recebendo apenas os dados da pagina atual. 
+
+```javascript
+ pagina 1
+ 
+indiceUltimoItem = 1 * 10 = 10
+indicePrimeiroItem = 10 - 10 = 0
+dados.slice(0, 10) retorna os itens do índice 0 ao 9 (10 itens).
+
+ pagina 2
+ 
+indiceUltimoItem = 2 * 10 = 20
+indicePrimeiroItem = 20 - 10 = 10
+dados.slice(10, 20) retorna os itens do índice 0 ao 9 (10 itens).
+```
+
+## Instalação do Projeto
+
+Este projeto utiliza Next.js para implementar a paginação de dados em um componente React. Siga os passos abaixo para configurar e executar o projeto localmente.
+
+Pré-requisitos
+* Certifique-se de ter o Node.js e npm (ou yarn) instalados em seu ambiente de desenvolvimento.
+
+Passos para Instalação
+Clone o repositório
+ ```javascript
+git clone https://github.com/seu-usuario/seu-projeto.git
+cd seu-projeto
+ ```
+
+Execute o projeto
+ ```javascript
+npm run dev
+ ```
