@@ -1,6 +1,6 @@
 ## Projeto de Paginação e Filtro em Nextjs
 
-Este projeto implementa um componente de paginação tradicional e infinita e filtro em Nextjs para exibir uma lista de posts filtráveis e pagináveis.
+Este projeto implementa um componente de paginação tradicional e infinita com filtro em Nextjs para exibir uma lista de posts filtráveis e pagináveis.
 
 
 ## /Exemplos paginação tradicional
