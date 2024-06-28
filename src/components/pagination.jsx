@@ -58,7 +58,7 @@ const Pagination = ({ date, quantityforpage }) => {
 
       {actualdate &&
         actualdate.map((post) => (
-          <div className="border-[.1em] border-gray-500 bg-white p-10 rounded-md w-3/5 h-56 flex flex-col justify-around ">
+          <div className="border-[.1em] border-gray-300 bg-white p-10 rounded-md w-3/5 h-56 flex flex-col justify-around ">
             <h1 className="text-xl text-gray-900">{post.title}</h1>
             <p className="text-sx text-gray-700">{post.body}</p>
           </div>
