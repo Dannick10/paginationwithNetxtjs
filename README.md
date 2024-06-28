@@ -67,6 +67,8 @@ console.log(frutasSelecionadas); // Output: [ '🍌', '🍇', '🍉' ]
 ```
 assim recebendo apenas os dados da pagina atual. 
 
+* **\exemplo**
+
 ```javascript
  pagina 1
  
