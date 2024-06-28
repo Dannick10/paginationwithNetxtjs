@@ -44,21 +44,19 @@ const Pagination = ({ date, quantityforpage }) => {
 
   return (
     <div className="flex flex-col items-center justify-between gap-4 min-h-screen">
-
-        
-      <label className="flex gap-2">Pesquisar 
-          <input
-            type="text"
-            className="border-2 rounded-sm p-0.5"
-            value={search}
-            onChange={(e) => SetSearch(e.target.value)}
-            />
-            </label>
-   
+      <label className="flex gap-2">
+        Pesquisar
+        <input
+          type="text"
+          className="border-2 rounded-sm p-0.5"
+          value={search}
+          onChange={(e) => SetSearch(e.target.value)}
+        />
+      </label>
 
       {actualdate &&
         actualdate.map((post) => (
-          <div className="border-[.1em] border-gray-300 bg-white p-10 rounded-md w-3/5 h-56 flex flex-col justify-around ">
+          <div className="border-[.1em] border-gray-300 bg-white p-10 rounded-md w-9/12 h-4/6 flex flex-col justify-around ">
             <h1 className="text-xl text-gray-900">{post.title}</h1>
             <p className="text-sx text-gray-700">{post.body}</p>
           </div>
@@ -78,7 +76,7 @@ const Pagination = ({ date, quantityforpage }) => {
           {listButton.map((list) => (
             <>
               <li
-                key={list}
+               key={post.id}
                 onClick={() => handleChangepage(list)}
                 className={`flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer ${
                   list == currentPage && ` text-gray-800 bg-slate-300`

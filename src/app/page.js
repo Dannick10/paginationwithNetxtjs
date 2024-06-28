@@ -38,8 +38,8 @@ export default function Home() {
             Infinito
           </button>
           </div>
-    
       </aside>
+       
       {typePagination ? (
         <Pagination date={posts} quantityforpage={10} />
       ) : (
